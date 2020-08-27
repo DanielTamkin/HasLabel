@@ -10,7 +10,7 @@ If a labels exists on a pull_request, do something.
 
 After fiddling through workflow expression syntax for the past few hours, I found it easier just to make an action that specifically checked if a pull_request had a certain label or not. I plan to expand this to issues as well.
 
-●  [Using the action](https://github.com/DanielTamkin/Relay#using-the-action) 
+●  [Using the action](https://github.com/DanielTamkin/HasLabel#using-the-action) 
 ● [Install](https://github.com/DanielTamkin/HasLabel#install) 
 ● [Configuration](https://github.com/DanielTamkin/HasLabel#configuration)
 ● [Events](https://github.com/DanielTamkin/HasLabel#events)
