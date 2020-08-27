@@ -1,9 +1,6 @@
 name-template: 'v$RESOLVED_VERSION 🌈'
 tag-template: 'v$RESOLVED_VERSION'
 change-template: '- $TITLE [(#$NUMBER)]($URL) @$AUTHOR'
-references:
-  - main
-  - v.+
 exclude-labels:
   - 'skip-changelog'
 categories:
@@ -52,6 +49,7 @@ template: |
   
   ### Reporting errors:
   Does this release break your workflow?
-  [Create an issue]() stat! Chances are you aren't the only
-  one running into that issue. It'll help others find possible
-  solutions while notifying me (Daniel Tamkin) of any problems.
+  [Create an issue](https://github.com/DanielTamkin/HasLabel/issues/new) stat! 
+  Chances are you aren't the only one running into that issue. It'll help
+  others find possible solutions while notifying me (Daniel Tamkin) of any
+  problems.
