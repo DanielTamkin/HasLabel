@@ -4,7 +4,8 @@ If a labels exists on a pull_request, do something.
 
 
 
-![GitHub contributors](https://img.shields.io/github/contributors/DanielTamkin/HasLabel)
+![Action Downloads](https://badgen.net/github/assets-dl/DanielTamkin/HasLabel)
+![Github Release Number](https://badgen.net/github/release/DanielTamkin/HasLabel)
 ![Twitter Follow](https://img.shields.io/twitter/follow/CodeHands?style=social)
 
 After fiddling through workflow expression syntax for the past few hours, I found it easier just to make an action that specifically checked if a pull_request had a certain label or not. I plan to expand this to issues as well.
@@ -40,7 +41,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Labeled to preview
       id: haslabel
-      uses: DanielTamkin/HasLabel
+      uses: DanielTamkin/HasLabel@v1
       with:
         contains: 'preview'
     - name: Test action
@@ -60,6 +61,7 @@ jobs:
 Click the button 'Use this workflow', or if you're on the marketplace 'Use latest version.'
 
 ## Configuration
+**Failure to supply either a `contains` __or__ `exact` label will result in job failure.**
 
 You can either loosely check for a label, or strictly check, but not both. If you need to check for more than one label try and narrow down your usecases for your labels first. If you still need more than one label for a job to trigger, stack HasLabel! The Action outputs unique variables through the [`step.output`](https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#operators) context. 
 ``` YAML
@@ -70,13 +72,13 @@ with:
 
 ```
 
-### `contains: $labelname`  
+## `contains: $labelname`  
 ###### Type: String
 
 
 If a label contains the string provided, HasLabel will proceed by outputting `labeled-$labelname`. Useful for statically worded labels such as `docs` or `feat` where you have flexibility in the naming scheme.
 
-### `exact: $labelname`  
+## `exact: $labelname`  
 ###### Type: String
 
 If a label contains the string provided, HasLabel will proceed by outputting `labeled-$labelname`. Useful for statically worded labels such as `docs` or `feat` where you have flexability in the naming scheme.
@@ -85,21 +87,36 @@ If a label contains the string provided, HasLabel will proceed by outputting `la
 
 HasLabel handles labeled, synchronize & unlabeled events by outputting unique variables accessable through `steps.<stepid>.outputs.<event>-<label>`. I'd suggest learning more about the [steps context](https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#operators) so to best utilize this Action.
 
-### `labeled`, `synchronize`  
+## `labeled`, `synchronize`  
 ###### Outputs: `labeled-$labelname` 
 ###### Usage: `steps.<stepid>.outputs.labeled-$labelname` 
 
 Replace $labelname with the label name you specified.
-If the supplied label is found, HasLabel will notify this by outputting the a unique variable for custom logic.
-This also goes for the unique `synchronize` event, allowing pull_request's dependent on push events to rely on _if_ a label is present.
+If the supplied label is found, HasLabel will signify this by outputting a unique variable in the form of `labeled-$labelname`, perfect for custom logic.
+This also goes for the unique `synchronize` event, allowing pull_request's dependent on push events on pull_requests
 
-### `unlabeled`  
+
+Example: A Step triggered when a pull_request has label `preview`.
+``` YAML
+  - name: Test action "no match"
+    if: steps.haslabel.outputs.labeled-preview
+    run: echo 'Handle a unlabeled event'
+```
+
+
+## `unlabeled`  
 ###### Outputs: `unlabeled-$labelname` 
 ###### Usage: `steps.<stepid>.outputs.unlabeled-$labelname` 
 
 Replace $labelname with the label name you specified.
-If the supplied label is either not found or was just removed, HasLabel will notify this by outputting the a unique variable for custom logic. Especially useful if you want to trigger steps based on a loss of a label. Such as review checks, stagging builds or approvals.
+If the supplied label is either not found or was just removed, HasLabel will signify this by outputting a unique variable in the form of `unlabeled-$labelname`. Especially useful if you want to trigger steps based on a loss of a label. Such as review checks, stagging builds or approvals.
 
+Example: A Step triggered when a label is no-longer present.
+``` YAML
+  - name: Test action "no match"
+    if: steps.haslabel.outputs.unlabeled-preview
+    run: echo 'Handle a unlabeled event'
+```
 
 ## Contact
 
