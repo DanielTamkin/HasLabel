@@ -1,0 +1,12 @@
+{
+  "name": "HasLabel",
+  "private": true,
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "test": "echo 'no tests yet' && exit 0"
+  },
+  "dependencies": {
+    "actions-toolkit": "^6.0.0"
+  }
+}
