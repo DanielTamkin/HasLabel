@@ -1,0 +1,23 @@
+name: HasLabel
+description:  GitHub Action that filters a pull_request label. Useful for triggering jobs on certain label events. 
+author: DanielTamkin
+runs:
+  using: docker
+  image: Dockerfile
+branding:
+  icon: filter
+  color: blue
+inputs:
+  contains:
+    description: 'A pr label has to contain this string'
+    required: false
+    default: 'set-this'
+  exact:
+    description: 'A pr label has to exactly have this label'
+    required: false
+    default: 'set-this'
+outputs:
+  labeled:
+    description: 'The supplied label was added'
+  unlabeled:
+    description: 'The supplied label was unlabeled'
