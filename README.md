@@ -4,7 +4,6 @@ If a labels exists on a pull_request, do something.
 
 
 
-![Action Downloads](https://badgen.net/github/assets-dl/DanielTamkin/HasLabel)
 ![Github Release Number](https://badgen.net/github/release/DanielTamkin/HasLabel)
 ![Twitter Follow](https://img.shields.io/twitter/follow/CodeHands?style=social)
 
