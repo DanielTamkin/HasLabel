@@ -37,9 +37,10 @@ version-resolver:
       - 'performance'
   default: patch
 template: |
+  Love this little Action? [Let me know!](https://github.com/DanielTamkin/DanielTamkin/issues/new?template=Project_comment.md)
+
   ## Changelog
 
-  Love this little Action? [Let me know!](https://github.com/DanielTamkin/DanielTamkin/issues/new?template=Project_comment.md)
 
   **An update from `$PREVIOUS_TAG`**
 
@@ -48,8 +49,7 @@ template: |
 
 
   ### Reporting errors:
-  Does this release break your workflow?
-  [Create an issue](https://github.com/DanielTamkin/HasLabel/issues/new).
+  Does this release break your workflow? [Create an issue](https://github.com/DanielTamkin/HasLabel/issues/new).
   Chances are you aren't the only one running into that issue. It'll help
   others find possible solutions while notifying me (Daniel Tamkin) of any
   problems.
