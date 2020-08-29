@@ -14,6 +14,7 @@ After fiddling through workflow expression syntax for the past few hours, I foun
 ● [Install](https://github.com/DanielTamkin/HasLabel#install) 
 ● [Configuration](https://github.com/DanielTamkin/HasLabel#configuration)
 ● [Events](https://github.com/DanielTamkin/HasLabel#events)
+● [Real world](https://github.com/DanielTamkin/HasLabel#real-world)
 
 
 ## Using the action
@@ -116,6 +117,57 @@ Example: A Step triggered when a label is no-longer present.
   - name: Test action "no match"
     if: steps.haslabel.outputs.unlabeled-preview
     run: echo 'Handle a unlabeled event'
+```
+
+# Real World
+This is a good real-world example where you trigger @nwtgck's Netlify deploy action once the label `preview` is added.
+
+You could just as easily have this action work in a single job too! Accessing the outputs of a step are easy to access through: `steps.<jobid>.outputs.<labeled/unlabeled>-<label>`
+
+``` YAML
+name: Preview
+
+on:
+ pull_request:
+  types:
+    - opened
+    - synchronize
+    - labeled
+    - unlabeled
+  branches:
+    - master
+
+jobs:
+  haslabel:
+    name: analyse labels
+    runs-on: ubuntu-latest
+    outputs:
+      preview: ${{ steps.haslabel.outputs.labeled-preview }}
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.4.1
+        with:
+          access_token: ${{ github.token }}
+      - uses: actions/checkout@v2
+      - name: Labeled to preview
+        id: haslabel
+        uses: DanielTamkin/HasLabel@v1
+        with:
+          contains: 'preview'
+  deploy:
+    name: deploy
+    needs: haslabel
+    if: needs.haslabel.outputs.preview
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1
+
 ```
 
 ## Contact
