@@ -14,7 +14,7 @@ categories:
       - 'bugfix'
       - 'bug'
   - title: 'Maintenance 🧰'
-    label: 
+    label:
       - 'chore'
       - 'deps'
 version-resolver:
@@ -38,18 +38,18 @@ version-resolver:
   default: patch
 template: |
   ## Changelog
-  
-  Love this little Action? Let me know, or donate some tea money.
-  
+
+  Love this little Action? [Let me know!](https://github.com/DanielTamkin/DanielTamkin/issues/new?template=Project_comment.md)
+
   **An update from `$PREVIOUS_TAG`**
-  
-  
+
+
   $CHANGES
-  
-  
+
+
   ### Reporting errors:
   Does this release break your workflow?
-  [Create an issue](https://github.com/DanielTamkin/HasLabel/issues/new) stat! 
+  [Create an issue](https://github.com/DanielTamkin/HasLabel/issues/new).
   Chances are you aren't the only one running into that issue. It'll help
   others find possible solutions while notifying me (Daniel Tamkin) of any
   problems.
