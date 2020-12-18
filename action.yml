@@ -2,8 +2,8 @@ name: HasLabel
 description:  GitHub Action that filters a pull_request label. Useful for triggering jobs on certain label events. 
 author: DanielTamkin
 runs:
-  using: docker
-  image: Dockerfile
+  using: 'node12'
+  main: './dist/index.js'
 branding:
   icon: filter
   color: blue
@@ -21,6 +21,4 @@ outputs:
     description: 'The supplied label was added'
   unlabeled:
     description: 'The supplied label was unlabeled'
-runs:
-  using: 'node12'
-  main: './dist/index.js'
+
