@@ -41,7 +41,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Labeled to preview
       id: haslabel
-      uses: DanielTamkin/HasLabel@v1
+      uses: DanielTamkin/HasLabel@v1.0.4
       with:
         contains: 'preview'
     - name: Test action
@@ -150,7 +150,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Labeled to preview
         id: haslabel
-        uses: DanielTamkin/HasLabel@v1
+        uses: DanielTamkin/HasLabel@v1.0.4
         with:
           contains: 'preview'
   deploy:
