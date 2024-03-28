@@ -2,7 +2,7 @@ name: HasLabel
 description:  GitHub Action that filters a pull_request label. Useful for triggering jobs on certain label events. 
 author: DanielTamkin
 runs:
-  using: 'node12'
+  using: 'node20'
   main: './dist/index.js'
 branding:
   icon: filter

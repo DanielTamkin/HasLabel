@@ -14,8 +14,10 @@ module.exports = async (label, tools) => {
 
   if(tools.inputs.contains) {
 
-    if (contains(label, context.payload)) {
+    name = contains(label, context.payload)
+    if (name !== "") {
       tools.outputs[`labeled-${label}`] = true;
+      tools.outputs[`label-name`] = name;
       result = true;
     }
 

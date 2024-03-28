@@ -5,8 +5,10 @@ module.exports = async (label, tools) => {
   let result = false;
 
   if(tools.inputs.contains) {
-    if (contains(label, context.payload)) {
+    name = contains(label, context.payload)
+    if (name !== "") {
       tools.outputs[`unlabeled-${label}`] = true;
+      tools.outputs[`label-name`] = name;
       result = true;
     }
 
@@ -19,6 +21,7 @@ module.exports = async (label, tools) => {
   } else if (tools.inputs.exact) {
     if (exact(label, context.payload.label)) {
       tools.outputs[`unlabeled-${label}`] = true;
+      tools.outputs[`label-name`] = name;
       result = true;
     }
 

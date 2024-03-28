@@ -12,18 +12,18 @@ function contains(label, payload, search) {
 
   const payloadLabel = payload.label;
   if (payloadLabel !== undefined && payloadLabel.name.includes(label)) {
-    return true;
+    return payloadLabel.name;
   // } else if (payload.pull_request !== undefined && search) {
   } else if (payload.pull_request !== undefined) {
     const labelList = payload.pull_request.labels;
     for (var i = 0; i < labelList.length; i++) {
       if (labelList[i].name.includes(label)) {
-        return true;
+        return labelList[i].name;
       }
     }
-    return false;
+    return "";
   } else {
-    return false;
+    return "";
   }
 }
 function exact(label, payload) {
